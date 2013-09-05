@@ -6,25 +6,38 @@ end
 #----------- SESSIONS -----------
 
 get '/sessions/new' do
-  # render sign-in page 
   erb :sign_in
 end
 
 post '/sessions' do
-  # sign-in
+  p params
+  if User.authenticate(params[:email], params[:password])
+    @user_now = User.find_by_email(params[:email])
+    session[:id] = @user_now.id
+    redirect '/'
+  else
+    redirect '/'
+  end
 end
 
 delete '/sessions/:id' do
-  # sign-out -- invoked via AJAX
+  session.clear
+  redirect '/'
 end
 
 #----------- USERS -----------
 
 get '/users/new' do
-  # render sign-up page
   erb :sign_up
 end
 
 post '/users' do
-  # sign-up a new user
+  @new_user = User.new(params[:user])
+  if @new_user.save
+    session[:id] = @new_user.id
+    redirect '/'
+  else
+    @errors = @new_user.errors.messages
+    erb :sign_up
+  end
 end

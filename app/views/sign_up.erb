@@ -1,13 +1,16 @@
 <div class="container">
+
   <h1>Sign Up</h1>
 
   <form id="sign-up" method="post" action="/users">
     <label class="label" for="name">Name</label>
     <input type="text" name="user[name]" placeholder="e.g., joe" >
+    <span><% if @errors %><%= @errors[:name].join(' ') %><%end%></span>
     <br>
 
     <label class="label" for="email">Email</label>
     <input type="email" name="user[email]" placeholder="e.g., me@example.com" >
+    <span> <% if @errors %><%= @errors[:email].join(', ') %><%end%></span>
     <br>
 
     <label class="label" for="password">Password</label>

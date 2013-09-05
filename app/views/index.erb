@@ -1,18 +1,12 @@
 <div class="container">
 
-<% if current_user %>
-<% @user.each do |u| %>
-<%= u %>
+  <% if current_user %>
+  <% @users.each do |u| %>
+      <%= "#{u.name}: #{u.email}" %>
+      <br>
+      <% end %>
+  <% else %>
+      <%= "Welcome!" %>
+  <% end %>
 
-
-
-<% else %>
-<%= "Welcome!" %>
-
-
-<% end %>
-
-  <%# TODO: 
-  1. If user is not signed in - display "Welcome".
-  2. If user is signed in then  display all users %>
 </div>
