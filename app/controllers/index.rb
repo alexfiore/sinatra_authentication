@@ -3,8 +3,6 @@ get '/' do
   erb :index
 end
 
-#----------- SESSIONS -----------
-
 get '/sessions/new' do
   erb :sign_in
 end
@@ -24,8 +22,6 @@ delete '/sessions/:id' do
   session.clear
   redirect '/'
 end
-
-#----------- USERS -----------
 
 get '/users/new' do
   erb :sign_up
